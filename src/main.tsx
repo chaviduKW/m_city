@@ -1,4 +1,4 @@
-import React from 'react'
+
 import ReactDOM from 'react-dom/client'
 import './Resources/css/app.css'
 import Routes from './routes.tsx'
@@ -21,16 +21,13 @@ const App = (props:any) =>{
 
 
 onAuthStateChanged(auth, (user) => {
-  if (user) {
+
     console.log(user);
     ReactDOM.createRoot(document.getElementById('root')!).render(
       <App user={user}/>
     )
 
-    //const uid = user.uid;
+
  
-  } else {
-    // User is signed out
-    // ...
-  }
+  
 });

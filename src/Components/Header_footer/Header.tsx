@@ -1,22 +1,36 @@
-import {AppBar,Toolbar,Button} from '@mui/material';
+import { AppBar, Toolbar, Button } from '@mui/material';
+import { auth } from '../../firebase';
+import { signOut } from "firebase/auth";
 
-import {Link} from 'react-router-dom';
-import {CityLogo} from '../Utils/tools';
+import { Link } from 'react-router-dom';
+import { CityLogo } from '../Utils/tools';
 
-const Header = ()=>{
-    return(
+const Header = ({ user }: any) => {
+
+
+    const logOutHandler = () =>{
+        console.log("in the function")
+        signOut(auth).then(() => {
+            alert('signed out');
+          }).catch((error) => {
+            // An error happened.
+            console.log(error)
+          });
+    }
+
+    return (
         <AppBar
             position='fixed'
             style={{
-                backgroundColor:'#98c5e9',
-                boxShadow:'none',
-                padding:'10px 0',
+                backgroundColor: '#98c5e9',
+                boxShadow: 'none',
+                padding: '10px 0',
                 borderBottom: '2px solid #00285e'
 
             }}
         >
-            <Toolbar style={{display:'flex'}}>
-                <div style={{flexGrow:1}}>
+            <Toolbar style={{ display: 'flex' }}>
+                <div style={{ flexGrow: 1 }}>
                     <div className="header_logo">
                         <CityLogo
                             link={true}
@@ -33,9 +47,25 @@ const Header = ()=>{
                 <Link to="/matches">
                     <Button color="inherit">Matches</Button>
                 </Link>
-                <Link to="/dashboard">
-                    <Button color="inherit">Dashboard</Button>
-                </Link>
+
+                {user ?
+                <>
+                    <Link to="/dashboard">
+                        <Button color="inherit">Dashboard</Button>
+                    </Link>
+
+                    
+                    <Button color="inherit"
+                            onClick={logOutHandler}
+                    >
+                        Log out
+                    </Button>
+                    
+                </>
+                    : null
+                }
+
+
             </Toolbar>
         </AppBar>
     )

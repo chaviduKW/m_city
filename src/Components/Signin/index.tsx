@@ -1,6 +1,6 @@
 import { useState } from "react";
 import 'firebase/auth';
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import {  signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
 
 import { CircularProgress } from '@mui/material';
@@ -75,6 +75,7 @@ const SignIn = (props:any) => {
                     }
                     <input
                         name="password"
+                        type="password"
                         placeholder="password"
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
