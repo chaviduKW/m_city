@@ -17,6 +17,9 @@ const SignIn = (props:any) => {
 
     const [loading, setLoading] = useState(false)
 
+    console.log("signinprops")
+    console.log(props)
+
     const formik = useFormik({
         initialValues: {
             email: 'chavidu@gmail.com',
@@ -59,6 +62,8 @@ const SignIn = (props:any) => {
     }
 
     return (
+        <>
+        {!props.user?
         <div className="container">
             <div className="signin_wrapper" style={{ margin: '100px' }}>
                 <form onSubmit={formik.handleSubmit}>
@@ -104,6 +109,11 @@ const SignIn = (props:any) => {
 
             </div>
         </div>
+        :
+                    <Redirect to={'/dashboard'}/>
+
+                }
+    </>
     )
 }
 
