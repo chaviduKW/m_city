@@ -8,6 +8,8 @@ import { Redirect } from "react-router-dom";;
 
 import { useFormik } from "formik";;
 import * as Yup from 'yup';
+import {toast } from 'react-toastify';
+import { showErrorToast, showSuccessToast} from "../Utils/tools";
 
 
 
@@ -17,8 +19,8 @@ const SignIn = (props:any) => {
 
     const formik = useFormik({
         initialValues: {
-            email: '',
-            password: ''
+            email: 'chavidu@gmail.com',
+            password: '123456'
         },
         validationSchema: Yup.object({
             email: Yup.string()
@@ -40,18 +42,19 @@ const SignIn = (props:any) => {
             .then((userCredential) => {
                 // Signed in 
                 const user = userCredential.user;
-                console.log("successfully logged in");
                 console.log(user);
                 setLoading(false);
-                props.history.push('/dashboard')
+                showSuccessToast('Welcome back');
+                //props.history.push('/dashboard');
+                
                 // ...
             })
             .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
                 setLoading(false);
-                console.log("failed login");
-                alert(error);
+                showErrorToast(error.message);
+                //alert(error.message);
             });
     }
 

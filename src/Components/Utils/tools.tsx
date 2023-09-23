@@ -1,4 +1,5 @@
 import {Link} from 'react-router-dom';
+import {toast } from 'react-toastify';
 
 import mcitylogo from '../../Resources/images/logos/manchester_city_logo.png';
 
@@ -28,4 +29,16 @@ export const CityLogo = ({link,linkTo,width,height}:CityLogoProps)=>{
     }else{
         return template
     }
+}
+
+export const showErrorToast = (msg:string) =>{
+    toast.error(msg, {
+        position: toast.POSITION.TOP_LEFT,
+        });
+}
+
+export const showSuccessToast = (msg:string) =>{
+    toast.success(msg, {
+        position: toast.POSITION.TOP_LEFT,
+        });
 }
