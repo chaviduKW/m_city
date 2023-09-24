@@ -5,22 +5,23 @@ import { signOut } from "firebase/auth";
 import { Link } from 'react-router-dom';
 import { CityLogo } from '../Utils/tools';
 import { showErrorToast, showSuccessToast} from "../Utils/tools";
+import { logOutHandler } from '../Utils/tools';
 
 
 const Header = ({ user }: any) => {
 
 
-    const logOutHandler = () =>{
-        console.log("in the function")
-        signOut(auth).then(() => {
-            //alert('signed out');
-            showSuccessToast('successfully signed out');
-          }).catch((error) => {
-            // An error happened.
-            showErrorToast(error.message);
-            console.log(error)
-          });
-    }
+    // const logOutHandler = () =>{
+    //     console.log("in the function")
+    //     signOut(auth).then(() => {
+    //         //alert('signed out');
+    //         showSuccessToast('successfully signed out');
+    //       }).catch((error) => {
+    //         // An error happened.
+    //         showErrorToast(error.message);
+    //         console.log(error)
+    //       });
+    // }
 
     return (
         <AppBar
