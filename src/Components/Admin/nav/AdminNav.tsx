@@ -11,7 +11,7 @@ const AdminNav = (props:any) =>{
         },
         {
             title:'Players',
-            linkTo:'/admin-players'
+            linkTo:'/admin_players'
         },
     ]
 
