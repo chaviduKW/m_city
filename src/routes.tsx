@@ -1,4 +1,4 @@
-import {Switch,Route,BrowserRouter} from 'react-router-dom';
+import {Switch ,Route,BrowserRouter} from 'react-router-dom';
 import { ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import AuthGuard from './Hoc/Auth';
@@ -9,6 +9,7 @@ import Home from './Components/Home';
 import SignIn from './Components/Signin'
 import Dashboard from './Components/Admin/Dashboard';
 import AdminPlayers from './Components/Admin/Players';
+import AddEditPlayers from './Components/Admin/Players/addEditPlayers';
 
 
 const Routes =({user}:any)=> {
@@ -18,6 +19,8 @@ const Routes =({user}:any)=> {
     
     <Header user={user}/>
       <Switch>
+        <Route path="/admin_players/edit_player/:playerid" exact component={AuthGuard(AddEditPlayers)}/>
+        <Route path="/admin_players/add_player" exact component={AuthGuard(AddEditPlayers)}/>
         <Route path="/admin_players" exact component={AuthGuard(AdminPlayers)}/>
         <Route path="/dashboard" exact component={AuthGuard(Dashboard)}/>
         <Route path="/sign_in" exact component={props =>(<SignIn {...props} user={user}/>)}/>

@@ -3,6 +3,8 @@ import { toast } from 'react-toastify';
 import { auth } from '../../firebase';
 import { signOut } from "firebase/auth";
 
+import{FormHelperText} from '@mui/material'
+
 
 import mcitylogo from '../../Resources/images/logos/manchester_city_logo.png';
 
@@ -34,28 +36,28 @@ export const CityLogo = ({ link, linkTo, width, height }: CityLogoProps) => {
     }
 }
 
-export const Tag = (props:any) => {
+export const Tag = (props: any) => {
     const template =
         <div
             style={{
-                background:props.bck?props.bck : '#ffffff',
-                fontSize: props.size? props.size:'15px',
-                color: props.color? props.color: '#000000',
-                padding:'5px 10px',
-                display:'inline-block',
-                fontFamily:'Righteous',
+                background: props.bck ? props.bck : '#ffffff',
+                fontSize: props.size ? props.size : '15px',
+                color: props.color ? props.color : '#000000',
+                padding: '5px 10px',
+                display: 'inline-block',
+                fontFamily: 'Righteous',
                 ...props.add
             }}
         >
             {props.children}
         </div>
-    if(props.link){
-        return(
+    if (props.link) {
+        return (
             <Link to={props.linkto}>
                 {template}
             </Link>
         )
-    }else{
+    } else {
         return template
     }
 }
@@ -82,4 +84,20 @@ export const logOutHandler = () => {
         showErrorToast(error.message);
         console.log(error)
     });
+}
+
+export const textErrorHelper = (formik:any, values:string) => ({
+    error: formik.errors[values] && formik.touched[values],
+    helperText: formik.errors[values] && formik.touched[values] ? formik.errors[values]:null
+})
+
+export const selectErrorHelper = (formik:any, values:string) => {
+    if(formik.errors[values] && formik.touched[values]){
+        return (<FormHelperText>{formik.errors[values]}</FormHelperText>)
+    }
+    return false
+}
+
+export const selectIsError = (formik:any, values:string) =>{
+    return formik.errors[values] && formik.touched[values]
 }

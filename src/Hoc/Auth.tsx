@@ -12,7 +12,9 @@ const AuthGuard = (Component:any) => {
             if (user) {
                 return <Component {...this.props}/>
             } else {
+                //return <Navigate to="/"/>
                 return <Redirect to="/"/>
+
             }
         }
 
