@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import AdminLayout from "../../../Hoc/AdminLayout";
-import { ExpandOutlined } from "@mui/icons-material";
+import FileUploader from "../../Utils/fileUploader";
+
 import { useFormik } from "formik";
 import * as Yup from 'yup';
 
 import { showErrorToast, showSuccessToast, textErrorHelper, selectErrorHelper, selectIsError } from "../../Utils/tools";
 import { TextField, Select, MenuItem, FormControl, Button } from "@mui/material";
-import { playersCollection, auth } from "../../../firebase";
+import { playersCollection} from "../../../firebase";
 import { DocumentData, addDoc, doc, getDoc, setDoc } from "firebase/firestore";
 
 
@@ -21,7 +22,8 @@ const defaultValues = {
     name: '',
     lastname: '',
     position: '',
-    number: ''
+    number: '',
+    image:''
 }
 
 const AddEditPlayers = (props: any) => {
@@ -43,7 +45,9 @@ const AddEditPlayers = (props: any) => {
                 .min(0, 'Te minimum is zero')
                 .max(100, 'Te maximum is 100'),
             position: Yup.string()
-                .required('This input is required')
+                .required('This input is required'),
+            image:Yup.string()
+                .required('image is required')
         }),
         onSubmit: (values) => {
 
@@ -52,6 +56,7 @@ const AddEditPlayers = (props: any) => {
     });
 
     const submitForm = (values: valuesType |DocumentData) => {
+        // formik.setFieldValue('image',fileUrl)
         let dataTosubmit = values;
         setLoading(true)
 
@@ -106,12 +111,21 @@ const AddEditPlayers = (props: any) => {
 
     }, [props.match.params.playerid])
 
+    // const updateImageName = (fileUrl:string) =>{
+    //     formik.setFieldValue('image',fileUrl)
+    // }
 
     return (
         <AdminLayout title={formType === 'add' ? 'Add player' : 'Edit Player'}>
             <div className="editplayers_dialog_wrapper">
                 <div>
+
+
                     <form onSubmit={formik.handleSubmit}>
+
+                        <FormControl>
+                            <FileUploader fileUrl={(fileUrl:string)=>console.log(fileUrl)}/>
+                        </FormControl>
 
                         image <hr />
                         <h4>Player info</h4>
