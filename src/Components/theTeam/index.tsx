@@ -1,4 +1,3 @@
-import PlaterCard from "../Utils/playerCard";
 import { Slide } from "react-awesome-reveal";
 import { Promise } from 'ts-promise';
 import { getStorage, ref, getDownloadURL } from "firebase/storage";

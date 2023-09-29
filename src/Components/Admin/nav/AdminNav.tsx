@@ -2,12 +2,12 @@ import {Link,withRouter} from 'react-router-dom';
 import { ListItem } from '@mui/material';
 import { logOutHandler } from '../../Utils/tools';
 
-const AdminNav = (props:any) =>{
+const AdminNav = () =>{
 
     const links = [
         {
             title:'Matches',
-            linkTo:'/admin-matches'
+            linkTo:'/admin_matches'
         },
         {
             title:'Players',
@@ -24,8 +24,6 @@ const AdminNav = (props:any) =>{
             </Link>
         )))
     }
-
-    console.log(props);
 
     return(
         <div>
