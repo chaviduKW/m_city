@@ -57,11 +57,11 @@ const AddEditPlayers = (props: any) => {
 
     const submitForm = (values: valuesType |DocumentData) => {
         // formik.setFieldValue('image',fileUrl)
-        let dataTosubmit = values;
+        let dataToSubmit = values;
         setLoading(true)
 
         if (formType === 'add') {
-            addDoc(playersCollection, dataTosubmit).then(() => {
+            addDoc(playersCollection, dataToSubmit).then(() => {
                 showSuccessToast('Player added');
                 formik.resetForm();
                 props.history.push('/admin_players')

@@ -23,8 +23,8 @@ const Routes = ({ user }: any) => {
 
       <Header user={user} />
       <Switch>
-        <Route path="/admin_players/edit_match/:matchid" exact component={AuthGuard(AddEditMatch)} />
-        <Route path="/admin_players/add_matches" exact component={AuthGuard(AddEditMatch)} />
+        <Route path="/admin_matches/edit_match/:matchid" exact component={AuthGuard(AddEditMatch)} />
+        <Route path="/admin_matches/add_match" exact component={AuthGuard(AddEditMatch)} />
         <Route path="/admin_matches" exact component={AuthGuard(AdminMatches)} />
         <Route path="/admin_players/edit_player/:playerid" exact component={AuthGuard(AddEditPlayers)} />
         <Route path="/admin_players/add_player" exact component={AuthGuard(AddEditPlayers)} />
