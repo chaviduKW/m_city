@@ -8,7 +8,6 @@ import { showErrorToast, showSuccessToast, textErrorHelper, selectErrorHelper, s
 import { TextField, Select, MenuItem, FormControl, Button } from "@mui/material";
 import { matchesCollection, teamsCollection } from "../../../firebase";
 import { DocumentData, addDoc, doc, getDoc, setDoc, getDocs } from "firebase/firestore";
-import { DockRounded } from '@mui/icons-material';
 
 const defaultValues = {
     date: '',

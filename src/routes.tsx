@@ -8,10 +8,12 @@ import Header from './Components/Header_footer/Header';
 import Footer from './Components/Header_footer/Footer';
 import Home from './Components/Home';
 import SignIn from './Components/Signin'
+import TheTeam from './Components/theTeam';
+import TheMatches from './Components/theMatches';
+
 import Dashboard from './Components/Admin/Dashboard';
 import AdminPlayers from './Components/Admin/Players';
 import AddEditPlayers from './Components/Admin/Players/addEditPlayers';
-import TheTeam from './Components/theTeam';
 import AdminMatches from './Components/Admin/matches';
 import AddEditMatch from './Components/Admin/matches/addEditMatch';
 
@@ -29,7 +31,9 @@ const Routes = ({ user }: any) => {
         <Route path="/admin_players/edit_player/:playerid" exact component={AuthGuard(AddEditPlayers)} />
         <Route path="/admin_players/add_player" exact component={AuthGuard(AddEditPlayers)} />
         <Route path="/admin_players" exact component={AuthGuard(AdminPlayers)} />
+
         <Route path="/dashboard" exact component={AuthGuard(Dashboard)} />
+        <Route path="/the_matches" exact component={TheMatches} />
         <Route path="/the_team" exact component={TheTeam} />
         <Route path="/sign_in" exact component={props => (<SignIn {...props} user={user} />)} />
         <Route path="/" exact component={Home} />
