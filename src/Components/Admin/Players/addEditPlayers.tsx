@@ -30,7 +30,8 @@ const AddEditPlayers = (props: any) => {
 
     const [loading, setLoading] = useState(false)
     const [formType, setFormType] = useState('');
-    const [values, setValues] = useState<valuesType | DocumentData >(defaultValues)
+    const [values, setValues] = useState<valuesType | DocumentData >(defaultValues);
+    const [imgUrl,setImgUrl] = useState('')
 
     const formik = useFormik({
         enableReinitialize: true,
@@ -47,10 +48,11 @@ const AddEditPlayers = (props: any) => {
             position: Yup.string()
                 .required('This input is required'),
             image:Yup.string()
-                .required('image is required')
+                 .required('image is required')
         }),
         onSubmit: (values) => {
-
+            console.log("inside values")
+            console.log(values)
             submitForm(values)
         },
     });
@@ -111,9 +113,22 @@ const AddEditPlayers = (props: any) => {
 
     }, [props.match.params.playerid])
 
-    // const updateImageName = (fileUrl:string) =>{
-    //     formik.setFieldValue('image',fileUrl)
-    // }
+    const updateImageName = (fileUrl:string) =>{
+        
+        setImgUrl(fileUrl)
+        
+        
+    }
+
+    useEffect(()=>{
+        
+        formik.setFieldValue('image',imgUrl)
+        
+    },[imgUrl])
+
+    
+
+   
 
     return (
         <AdminLayout title={formType === 'add' ? 'Add player' : 'Edit Player'}>
@@ -123,11 +138,12 @@ const AddEditPlayers = (props: any) => {
 
                     <form onSubmit={formik.handleSubmit}>
 
-                        <FormControl>
-                            <FileUploader fileUrl={(fileUrl:string)=>console.log(fileUrl)}/>
+                        <FormControl error={selectIsError(formik, 'image')}>
+                            <FileUploader fileUrl={(fileUrl:string)=>updateImageName(fileUrl)}/>
+                            {selectErrorHelper(formik, 'image')}
                         </FormControl>
 
-                        image <hr />
+                         <hr />
                         <h4>Player info</h4>
                         <div className="mb-5">
                             <FormControl>

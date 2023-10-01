@@ -10,6 +10,7 @@ import Home from './Components/Home';
 import SignIn from './Components/Signin'
 import TheTeam from './Components/theTeam';
 import TheMatches from './Components/theMatches';
+import NotFound from './Components/NotFound';
 
 import Dashboard from './Components/Admin/Dashboard';
 import AdminPlayers from './Components/Admin/Players';
@@ -37,6 +38,7 @@ const Routes = ({ user }: any) => {
         <Route path="/the_team" exact component={TheTeam} />
         <Route path="/sign_in" exact component={props => (<SignIn {...props} user={user} />)} />
         <Route path="/" exact component={Home} />
+        <Route component={NotFound} />
       </Switch>
       <ToastContainer />
       <Footer />
