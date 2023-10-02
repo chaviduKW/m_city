@@ -1,4 +1,6 @@
-const MatchesBlock = ({ match }) => {
+import { DocumentData } from "firebase/firestore";
+
+const MatchesBlock = ({ match }:{match:DocumentData}) => {
     return (
         <div className="match_block">
             <div className="match_date">

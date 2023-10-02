@@ -1,10 +1,10 @@
 import {Animate} from 'react-move';
 import {easePolyOut} from 'd3-ease';
-import PlaterCard from '../../Utils/playerCard';
+import PlayerCard from '../../Utils/playerCard';
 
-import Otemandi from '../../../Resources/images/players/Otamendi.png'
-import Sterling from '../../../Resources/images/players/Raheem_Sterling.png'
-import Kompany from '../../../Resources/images/players/Vincent_Kompany.png'
+import Otemandi from '../../../Resources/images/players/Otamendi.png';
+import Sterling from '../../../Resources/images/players/Raheem_Sterling.png';
+import Kompany from '../../../Resources/images/players/Vincent_Kompany.png';
 
 let cards =[
     {
@@ -30,13 +30,13 @@ let cards =[
 ]
 
 
-const HomeCards = (props:any) => {
+const HomeCards = ({show}:{show:boolean}) => {
 
     const showAnimateCards = () =>[
         cards.map((card,i)=>(
             <Animate
                 key={i}
-                show={props.show}
+                show={show}
                 start={{
                     left:0,
                     bottom:0
@@ -55,7 +55,7 @@ const HomeCards = (props:any) => {
                             bottom
                         }}
                     >
-                        <PlaterCard
+                        <PlayerCard
                             number="30"
                             name="Nicolas"
                             lastname="Otemendi"

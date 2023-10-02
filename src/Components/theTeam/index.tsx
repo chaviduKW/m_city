@@ -6,25 +6,25 @@ import { playersCollection } from "../../firebase";
 import { useEffect, useState } from "react";
 import { showErrorToast } from "../Utils/tools";
 import { CircularProgress } from "@mui/material";
-import { getDocs } from "firebase/firestore";
+import { getDocs,DocumentData } from "firebase/firestore";
 import PlayerCard from "../Utils/playerCard";
 
 const TheTeam = () => {
     const [loading, setLoading] = useState(true);
-    const [players, setPlayers] = useState();
+    const [players, setPlayers] = useState<DocumentData>();
 
     useEffect(() => {
         if (!players) {
 
             getDocs(playersCollection).then(snapshot => {
-                const players = snapshot.docs.map(doc => ({
+                const players:DocumentData = snapshot.docs.map(doc => ({
                     id: doc.id,
                     ...doc.data()
                 }));
 
                 let promises: any = [];
 
-                players.forEach((player, index) => {
+                players.forEach((player:DocumentData, index:number) => {
                     new Promise((resolve, reject) => {
                         const storage = getStorage();
                         getDownloadURL(ref(storage, `players/${player.image}`))
@@ -35,10 +35,9 @@ const TheTeam = () => {
                             reject(err);
                         })
                     })
-                    //console.log(player.image);
+                    
                 })
-                //console.log("aaaaaa")
-                //console.log(players)
+                
                 Promise.all(promises).then(()=>{
                     setPlayers(players);
                 })
@@ -52,14 +51,13 @@ const TheTeam = () => {
         }
     },[players])
 
-    //console.log(players)
+
 
     const showPlayerByCategory = (category: "Keeper"|"Defence"|"Midfield"|"Striker") => (
         players ?
-            players.map((player,i)=>{
+            players.map((player:DocumentData,i:number)=>{
                 return player.position === category ?
-                    <Slide left key={player.id} triggerOnce>
-                        
+                    <Slide key={player.id} triggerOnce>
                         <div className="item">
                             <PlayerCard
                                  number={player.number}

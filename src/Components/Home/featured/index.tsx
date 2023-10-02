@@ -1,4 +1,3 @@
-import Test from "./test";
 import Stripes from "./Stripes";
 import Text from "./Text";
 

@@ -1,5 +1,5 @@
 import { storage } from '../../firebase';
-import { useFileUpload } from 'react-firebase-file-upload'
+import { useFileUpload } from 'react-firebase-file-upload';
 
 interface FileUploaderProps {
   fileUrl: (url: string) => void;

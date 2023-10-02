@@ -1,18 +1,17 @@
 import { useState, useEffect } from 'react'
 import { Slide } from 'react-awesome-reveal';
 import { matchesCollection } from '../../../firebase';
-import { getDocs } from "firebase/firestore";
+import { getDocs,DocumentData } from "firebase/firestore";
 import MatchesBlock from '../../Utils/matches_block';
 
 const Blocks = () => {
-    const [matches, setMatches] = useState<{ id: string; }[]>([]);
+    const [matches, setMatches] = useState<DocumentData[]>([]);
 
     useEffect(() => {
         if (!(matches.length > 0)) {
             const queryPromise = getDocs(matchesCollection);
             queryPromise
                 .then((snapshot) => {
-                    //console.log(snapshot);
                     const matches = snapshot.docs.map(doc=>({
                         id:doc.id,
                         ...doc.data()
@@ -28,9 +27,9 @@ const Blocks = () => {
         }
     }, [matches])
     
-    const showMatches = (matches) =>(
+    const showMatches = (matches:DocumentData) =>(
         matches?
-            matches.map((match)=>(
+            matches.map((match:DocumentData)=>(
                 <Slide  key={match.id} className='item' triggerOnce>
                     <div>
                         <div className="wrapper">

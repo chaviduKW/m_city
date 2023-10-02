@@ -1,5 +1,5 @@
 import { useState } from "react";
-import 'firebase/auth';
+import {User} from "firebase/auth";
 import {  signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
 
@@ -12,12 +12,9 @@ import { showErrorToast, showSuccessToast} from "../Utils/tools";
 
 
 
-const SignIn = (props:any) => {
+const SignIn = ({user}:{user:User}) => {
 
     const [loading, setLoading] = useState(false)
-
-    console.log("signinprops")
-    console.log(props)
 
     const formik = useFormik({
         initialValues: {
@@ -38,31 +35,28 @@ const SignIn = (props:any) => {
         }
     })
 
-    const submitForm = (values:any) => {
+    const submitForm = ({email,password}:{email:string,password:string}) => {
 
-        signInWithEmailAndPassword(auth, values.email, values.password)
+        signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 // Signed in 
                 const user = userCredential.user;
                 console.log(user);
                 setLoading(false);
                 showSuccessToast('Welcome back');
-                //props.history.push('/dashboard');
-                
-                // ...
+               
             })
             .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
+                
                 setLoading(false);
                 showErrorToast(error.message);
-                //alert(error.message);
+               
             });
     }
 
     return (
         <>
-        {!props.user?
+        {!user?
         <div className="container">
             <div className="signin_wrapper" style={{ margin: '100px' }}>
                 <form onSubmit={formik.handleSubmit}>

@@ -1,7 +1,7 @@
-import { Fade } from 'react-awesome-reveal'
-import { Tag } from '../../Utils/tools'
-import HomeCards from './cards'
-import { useState } from 'react'
+import { Fade } from 'react-awesome-reveal';
+import { Tag } from '../../Utils/tools';
+import HomeCards from './cards';
+import { useState } from 'react';
 
 let tagDefault = {
     bck: '#0e1731',

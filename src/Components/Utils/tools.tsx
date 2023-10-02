@@ -4,9 +4,20 @@ import { auth } from '../../firebase';
 import { signOut } from "firebase/auth";
 
 import{FormHelperText} from '@mui/material'
-
+import { FormikValues } from 'formik';
+import React, { ReactNode } from 'react';
 
 import mcitylogo from '../../Resources/images/logos/manchester_city_logo.png';
+
+interface TagProps {
+    bck?: string;
+    size?: string;
+    color?: string;
+    add?: React.CSSProperties;
+    link?: boolean;
+    linkTo?: string;
+    children: ReactNode;
+}
 
 type CityLogoProps = {
     link: boolean;
@@ -36,7 +47,7 @@ export const CityLogo = ({ link, linkTo, width, height }: CityLogoProps) => {
     }
 }
 
-export const Tag = (props: any) => {
+export const Tag = (props: TagProps) => {
     const template =
         <div
             style={{
@@ -53,7 +64,7 @@ export const Tag = (props: any) => {
         </div>
     if (props.link) {
         return (
-            <Link to={props.linkto}>
+            <Link to={props.linkTo!}>
                 {template}
             </Link>
         )
@@ -80,24 +91,23 @@ export const logOutHandler = () => {
         //alert('signed out');
         showSuccessToast('successfully signed out');
     }).catch((error) => {
-        // An error happened.
         showErrorToast(error.message);
         console.log(error)
     });
 }
 
-export const textErrorHelper = (formik:any, values:string) => ({
+export const textErrorHelper = (formik:FormikValues, values:string) => ({
     error: formik.errors[values] && formik.touched[values],
     helperText: formik.errors[values] && formik.touched[values] ? formik.errors[values]:null
 })
 
-export const selectErrorHelper = (formik:any, values:string) => {
+export const selectErrorHelper = (formik:FormikValues, values:string) => {
     if(formik.errors[values] && formik.touched[values]){
         return (<FormHelperText>{formik.errors[values]}</FormHelperText>)
     }
     return false
 }
 
-export const selectIsError = (formik:any, values:string) =>{
+export const selectIsError = (formik:FormikValues, values:string) =>{
     return formik.errors[values] && formik.touched[values]
 }
