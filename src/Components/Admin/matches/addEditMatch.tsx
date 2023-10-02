@@ -10,6 +10,20 @@ import { TextField, Select, MenuItem, FormControl, Button } from "@mui/material"
 import { matchesCollection, teamsCollection } from "../../../firebase";
 import { DocumentData, addDoc, doc, getDoc, setDoc, getDocs } from "firebase/firestore";
 
+type valueTypes = {
+    date:string 
+    local:string 
+    resultLocal:number 
+    away:string 
+    resultAway:number 
+    referee:string 
+    stadium:string 
+    result:string 
+    final:string
+    localThmb?:string
+    awayThmb?:string
+}
+
 const defaultValues = {
     date: '',
     local: '',
@@ -26,11 +40,9 @@ const AddEditMatch = () => {
 
     const [loading, setLoading] = useState(false);
     const [formType, setFormType] = useState('');
-    const [teams, setTeams] = useState<any>();
+    const [teams, setTeams] = useState<DocumentData[]>();
     const [values, setValues] = useState<any>(defaultValues);  // change this to document data any valuesType
     const { matchid } = useParams();
-
-    console.log("inside add edit matchhhh"+matchid)
 
     const formik = useFormik({
         enableReinitialize: true,
@@ -66,17 +78,18 @@ const AddEditMatch = () => {
         }
     })
 
-    const submitForm = (values) =>{
+    const submitForm = (values:valueTypes) =>{
         let dataToSubmit = values; 
-
-        teams.forEach(team=>{
-            if(team.shortName===dataToSubmit.local){
-                dataToSubmit['localThmb'] = team.thmb
-            }
-            if(team.shortName===dataToSubmit.away){
-                dataToSubmit['awayThmb'] = team.thmb
-            }
-        })
+        if(teams){
+            teams.forEach(team=>{
+                if(team.shortName===dataToSubmit.local){
+                    dataToSubmit['localThmb'] = team.thmb
+                }
+                if(team.shortName===dataToSubmit.away){
+                    dataToSubmit['awayThmb'] = team.thmb
+                }
+            })
+        }
 
         setLoading(true);
 
