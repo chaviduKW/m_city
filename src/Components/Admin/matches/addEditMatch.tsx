@@ -3,6 +3,7 @@ import AdminLayout from '../../../Hoc/AdminLayout';
 
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { useParams } from 'react-router-dom';
 
 import { showErrorToast, showSuccessToast, textErrorHelper, selectErrorHelper, selectIsError } from "../../Utils/tools";
 import { TextField, Select, MenuItem, FormControl, Button } from "@mui/material";
@@ -21,12 +22,15 @@ const defaultValues = {
     final: '',
 }
 
-const AddEditMatch = (props: any) => {
+const AddEditMatch = () => {
 
     const [loading, setLoading] = useState(false);
     const [formType, setFormType] = useState('');
     const [teams, setTeams] = useState<any>();
     const [values, setValues] = useState<any>(defaultValues);  // change this to document data any valuesType
+    const { matchid } = useParams();
+
+    console.log("inside add edit matchhhh"+matchid)
 
     const formik = useFormik({
         enableReinitialize: true,
@@ -86,7 +90,7 @@ const AddEditMatch = (props: any) => {
                 setLoading(false)
             })
         } else {
-            const param = props.match.params.matchid;
+            const param = matchid;
             const docRef = doc(matchesCollection, param);
             console.log(docRef);
 
@@ -116,7 +120,7 @@ const AddEditMatch = (props: any) => {
     }, [teams])
 
     useEffect(() => {
-        const param = props.match.params.matchid;
+        const param = matchid;
         if (param) {
             const docRef = doc(matchesCollection, param);
             getDoc(docRef).then((snapshot) => {
@@ -137,7 +141,7 @@ const AddEditMatch = (props: any) => {
             setValues(defaultValues)
         }
 
-    }, [props.match.params.matchid])
+    }, [matchid])
 
     const showTeams = () => (
         teams ?

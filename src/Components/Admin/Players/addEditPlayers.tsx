@@ -4,6 +4,7 @@ import FileUploader from "../../Utils/fileUploader";
 
 import { useFormik } from "formik";
 import * as Yup from 'yup';
+import { useParams,useNavigate  } from 'react-router-dom';
 
 import { showErrorToast, showSuccessToast, textErrorHelper, selectErrorHelper, selectIsError } from "../../Utils/tools";
 import { TextField, Select, MenuItem, FormControl, Button } from "@mui/material";
@@ -26,12 +27,14 @@ const defaultValues = {
     image:''
 }
 
-const AddEditPlayers = (props: any) => {
+const AddEditPlayers = () => {
 
+    const navigate = useNavigate();
     const [loading, setLoading] = useState(false)
     const [formType, setFormType] = useState('');
     const [values, setValues] = useState<valuesType | DocumentData >(defaultValues);
     const [imgUrl,setImgUrl] = useState('')
+    const { playerid } = useParams();
 
     const formik = useFormik({
         enableReinitialize: true,
@@ -66,12 +69,13 @@ const AddEditPlayers = (props: any) => {
             addDoc(playersCollection, dataToSubmit).then(() => {
                 showSuccessToast('Player added');
                 formik.resetForm();
-                props.history.push('/admin_players')
+                //props.history.push('/admin_players')
+                navigate('/admin_players');
             }).catch(error => {
                 showErrorToast(error)
             })
         } else {
-            const param = props.match.params.playerid;
+            const param = playerid;
             const docRef = doc(playersCollection, param);
             setDoc(docRef,values).then(()=>{
                 showSuccessToast("player Updated")
@@ -85,7 +89,7 @@ const AddEditPlayers = (props: any) => {
 
     useEffect(() => {
 
-        const param = props.match.params.playerid;
+        const param = playerid;
 
 
         if (param) {
@@ -111,7 +115,7 @@ const AddEditPlayers = (props: any) => {
 
         }
 
-    }, [props.match.params.playerid])
+    }, [playerid])
 
     const updateImageName = (fileUrl:string) =>{
         

@@ -4,7 +4,7 @@ import {  signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
 
 import { CircularProgress } from '@mui/material';
-import { Redirect } from "react-router-dom";;
+import { Navigate } from "react-router-dom";;
 
 import { useFormik } from "formik";;
 import * as Yup from 'yup';
@@ -103,7 +103,7 @@ const SignIn = ({user}:{user:User}) => {
             </div>
         </div>
         :
-                    <Redirect to={'/dashboard'}/>
+                    <Navigate to={'/dashboard'}/>
 
                 }
     </>

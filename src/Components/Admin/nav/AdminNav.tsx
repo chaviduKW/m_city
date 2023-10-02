@@ -1,4 +1,4 @@
-import {Link,withRouter} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import { ListItem } from '@mui/material';
 import { logOutHandler } from '../../Utils/tools';
 
@@ -37,4 +37,4 @@ const AdminNav = () =>{
     )
 }
 
-export default withRouter(AdminNav) 
+export default AdminNav 
