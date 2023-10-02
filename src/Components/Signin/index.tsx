@@ -12,7 +12,7 @@ import { showErrorToast, showSuccessToast} from "../Utils/tools";
 
 
 
-const SignIn = ({user}:{user:User}) => {
+const SignIn = ({user}:{user:User|null}) => {
 
     const [loading, setLoading] = useState(false)
 

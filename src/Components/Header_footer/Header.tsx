@@ -6,7 +6,7 @@ import { logOutHandler } from '../Utils/tools';
 import {User} from "firebase/auth";
 
 
-const Header = ({ user }: {user:User}) => {
+const Header = ({ user }: {user:User|null}) => {
 
     return (
         <AppBar

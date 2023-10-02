@@ -1,30 +1,17 @@
-import React from "react";
-import { Redirect } from "react-router-dom";
+import { Navigate,useNavigate } from "react-router-dom";
+import {PropsWithChildren, useEffect} from "react";
+import {User} from "@firebase/auth";
 import { auth } from "../firebase";
 
+type AuthGuardProps = PropsWithChildren & { user: User | null };
 
-const AuthGuard = (Component:any) => {
-    class AuthHoc extends React.Component {
+export function AuthGuard(props: AuthGuardProps) {
+    const navigate = useNavigate();
+    const user = auth.currentUser;
 
-        authCheck = () => {
-            const user = auth.currentUser;
+    useEffect(() => {
+        if (!user) navigate('/sign_in')
+    }, [navigate, user]);
 
-            if (user) {
-                return <Component {...this.props}/>
-            } else {
-                //return <Navigate to="/"/>
-                return <Redirect to="/"/>
-
-            }
-        }
-
-        render() {
-            return this.authCheck();
-        }
-
-    }
-    return AuthHoc
-
+    return user ? <>{props.children}</> : null;
 }
-
-export default AuthGuard
