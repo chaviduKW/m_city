@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Slide } from 'react-awesome-reveal';
-import { matchesCollection } from '../../../firebase';
+//import { matchesCollection } from '../../../firebase';
+import { matchesCollection } from '../../../config/firebase-config';
 import { getDocs,DocumentData } from "firebase/firestore";
 import MatchesBlock from '../../Utils/matches_block';
 

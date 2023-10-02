@@ -1,7 +1,8 @@
 import { useState } from "react";
 import {User} from "firebase/auth";
 import {  signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../firebase";
+// import { auth } from "../../firebase";
+import { auth } from "../../config/firebase-config";
 
 import { CircularProgress } from '@mui/material';
 import { Navigate } from "react-router-dom";;

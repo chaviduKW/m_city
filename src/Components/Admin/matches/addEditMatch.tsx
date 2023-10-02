@@ -7,7 +7,8 @@ import { useParams } from 'react-router-dom';
 
 import { showErrorToast, showSuccessToast, textErrorHelper, selectErrorHelper, selectIsError } from "../../Utils/tools";
 import { TextField, Select, MenuItem, FormControl, Button } from "@mui/material";
-import { matchesCollection, teamsCollection } from "../../../firebase";
+//import { matchesCollection, teamsCollection } from "../../../firebase";
+import { matchesCollection, teamsCollection } from '../../../config/firebase-config';
 import { DocumentData, addDoc, doc, getDoc, setDoc, getDocs } from "firebase/firestore";
 
 type valueTypes = {
@@ -41,7 +42,7 @@ const AddEditMatch = () => {
     const [loading, setLoading] = useState(false);
     const [formType, setFormType] = useState('');
     const [teams, setTeams] = useState<DocumentData[]>();
-    const [values, setValues] = useState<any>(defaultValues);  // change this to document data any valuesType
+    const [values, setValues] = useState<any>(defaultValues);  
     const { matchid } = useParams();
 
     const formik = useFormik({

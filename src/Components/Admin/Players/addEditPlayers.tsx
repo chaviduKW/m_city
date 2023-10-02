@@ -8,7 +8,8 @@ import { useParams,useNavigate  } from 'react-router-dom';
 
 import { showErrorToast, showSuccessToast, textErrorHelper, selectErrorHelper, selectIsError } from "../../Utils/tools";
 import { TextField, Select, MenuItem, FormControl, Button } from "@mui/material";
-import { playersCollection} from "../../../firebase";
+//import { playersCollection} from "../../../firebase";
+import { playersCollection } from "../../../config/firebase-config";
 import { DocumentData, addDoc, doc, getDoc, setDoc } from "firebase/firestore";
 
 

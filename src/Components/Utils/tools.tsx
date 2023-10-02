@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { auth } from '../../firebase';
+// import { auth } from '../../firebase';
+import { auth } from '../../config/firebase-config';
 import { signOut } from "firebase/auth";
 
 import{FormHelperText} from '@mui/material'

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import AdminLayout from '../../../Hoc/AdminLayout'
-import { playersCollection } from '../../../firebase'
+//import { playersCollection } from '../../../firebase'
+import { playersCollection } from "../../../config/firebase-config";
 import { query, getDocs, limit, startAfter } from "firebase/firestore";
 import { Button, Table, TableBody, TableCell, TableHead, TableRow, Paper, CircularProgress } from '@mui/material';
 import { showErrorToast, showSuccessToast } from '../../Utils/tools';

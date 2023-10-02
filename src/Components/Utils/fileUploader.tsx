@@ -1,4 +1,5 @@
-import { storage } from '../../firebase';
+// import { storage } from '../../firebase';
+import { storage } from '../../config/firebase-config';
 import { useFileUpload } from 'react-firebase-file-upload';
 
 interface FileUploaderProps {

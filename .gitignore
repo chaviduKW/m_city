@@ -24,3 +24,4 @@ dist-ssr
 *.sw?
 
 firebase.tsx
+src/config/firebase-config.ts

@@ -1,7 +1,7 @@
 import { Navigate,useNavigate } from "react-router-dom";
 import {PropsWithChildren, useEffect} from "react";
 import {User} from "@firebase/auth";
-import { auth } from "../firebase";
+import { auth } from "../config/firebase-config";
 
 type AuthGuardProps = PropsWithChildren & { user: User | null };
 

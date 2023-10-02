@@ -2,7 +2,8 @@ import { Slide } from "react-awesome-reveal";
 import { Promise } from 'ts-promise';
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
 
-import { playersCollection } from "../../firebase";
+// import { playersCollection } from "../../firebase";
+import { playersCollection } from "../../config/firebase-config";
 import { useEffect, useState } from "react";
 import { showErrorToast } from "../Utils/tools";
 import { CircularProgress } from "@mui/material";

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { positionsCollection } from '../../firebase';
+// import { positionsCollection } from '../../firebase';
+import { positionsCollection } from '../../config/firebase-config';
 import { showErrorToast } from '../Utils/tools';
 
 import {

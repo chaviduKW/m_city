@@ -2,7 +2,8 @@ import { useEffect, useReducer, useState } from 'react';
 import { showErrorToast } from '../Utils/tools';
 
 import { CircularProgress } from '@mui/material'
-import { matchesCollection } from '../../firebase';
+// import { matchesCollection } from '../../firebase';
+import { matchesCollection } from '../../config/firebase-config';
 
 import LeagueTable from './tables';
 import MatchesList from './matchesList';

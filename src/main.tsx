@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom/client'
 import './Resources/css/app.css'
 import Routes from './routes.tsx'
 import {User} from "firebase/auth";
-import { auth } from './firebase.tsx'
+// import { auth } from './firebase.tsx'
+import { auth } from './config/firebase-config.ts';
 import { onAuthStateChanged } from "firebase/auth";
 
 
